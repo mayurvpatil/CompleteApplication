@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: flask-backend
-          image: "{{ .Values.common.dockerRegistry }}/{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
+          image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
           imagePullPolicy: {{ .Values.common.imagePullPolicy }}
           name: {{ template "backend.fullname" . }}
           ports:
@@ -31,9 +31,3 @@ spec:
               protocol: TCP
       imagePullSecrets:
         - name: {{ .Values.common.imagePullSecret }}
-    {{- if .Values.global.rbac.pspEnabled }}
-      serviceAccountName: reanplatform
-    {{- end }}
-    {{- if .Values.backend.nodeSelector }}
-      nodeSelector: {{ toYaml .Values.backend.nodeSelector | indent 8 }}
-    {{- end }}

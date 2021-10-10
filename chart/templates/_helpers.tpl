@@ -12,7 +12,7 @@ Create a fully qualified frontend service.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
 {{- define "frontend.fullname" -}}
-{{- printf "%s-frontend" .Release.Name | trunc 63 | trimSuffix "-" -}}
+{{- printf "frontend-service" -}}
 {{- end -}}
 
 {{/*
@@ -20,5 +20,5 @@ Create a fully qualified backend service.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
 {{- define "backend.fullname" -}}
-{{- printf "%s-backend" .Release.Name | trunc 63 | trimSuffix "-" -}}
+{{- printf "backend-service" -}}
 {{- end -}}
