@@ -21,10 +21,12 @@ spec:
         release: {{ .Release.Name }}
     spec:
       containers:
-        - name: flask-backend
+        - name: {{ template "backend.fullname" . }}
           image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
           imagePullPolicy: {{ .Values.common.imagePullPolicy }}
-          name: {{ template "backend.fullname" . }}
+          env:
+          - name: NAME
+            value: {{ .Values.backend.name }}
           ports:
             - name: 'flask-port'
               containerPort: 5001

@@ -3,9 +3,10 @@ import os
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+#CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-@app.route("/")
+@app.route("/api")
 def hello_world():
     name = os.environ.get('NAME')
     
@@ -17,4 +18,4 @@ def hello_world():
         return "Environment $NAME variable not exists."
 
 if __name__ == "__main__":
-    app.run(host ='0.0.0.0',port = 5001, debug = False) 
+    app.run(host ='127.0.0.1',port = 5001, debug = False) 

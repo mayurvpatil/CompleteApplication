@@ -7,7 +7,7 @@ function App() {
   const [data, setData] = useState('');
 
   function click() {
-    axios.get("http://backend-service:5001/", {})
+    axios.get("/api")
       .then((response) => {
         var today = new Date();
         var str = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear() + " " + today.getHours() + ":" + today.getMinutes()

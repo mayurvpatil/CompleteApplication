@@ -1,9 +1,5 @@
-# CompleteApplication
-Simple flask and react application along with docker files and helm chart sample
+#!/bin/bash
 
-# Intstallation
-
-```
 # Start minikube
 minikube start --vm=true
 
@@ -14,10 +10,12 @@ eval $(minikube docker-env)             # unix shells
 # enable minikube ingress
 minikube addons enable ingress
 
+cd backend
 docker build -t backend:1.0.0 . 
 
+cd ..
+cd frontend
 docker build -t frontend:1.0.0 .
 
+cd ..
 helm install stakater chart/ --namespace ingress-nginx
-
-```
