@@ -13,4 +13,3 @@ spec:
       protocol: TCP
   selector:
     app: {{ template "backend.fullname" . }}
-    release: {{ .Release.Name }}

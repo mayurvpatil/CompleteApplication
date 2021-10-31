@@ -1,17 +1,17 @@
 backend:
   image:
-    repository: backend
+    repository: mayurvpatil/backend
     tag: "1.0.0"
   replicaCount: 1
   nodeSelector:
   name: Stakater
   service:
-    type: NodePort
+    type: ClusterIP
     port: 5001
 
 frontend:
   image:
-    repository: frontend
+    repository: mayurvpatil/frontend
     tag: "1.0.0"
   replicaCount: 1
   nodeSelector:

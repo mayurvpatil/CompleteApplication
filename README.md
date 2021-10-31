@@ -14,9 +14,8 @@ eval $(minikube docker-env)             # unix shells
 # enable minikube ingress
 minikube addons enable ingress
 
-docker build -t backend:1.0.0 . 
-
-docker build -t frontend:1.0.0 .
+docker build -t mayurvpatil/backend:1.0.0 . 
+docker build -t mayurvpatil/frontend:1.0.0 .
 
 helm install stakater chart/ --namespace ingress-nginx
 

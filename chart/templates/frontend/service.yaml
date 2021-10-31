@@ -5,9 +5,6 @@ metadata:
   name: {{ template "frontend.fullname" . }}
   labels:
     app: {{ template "frontend.fullname" . }}
-    chart: {{ template "chart.fullname" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
 spec:
   type: {{ .Values.frontend.service.type }}
   ports:
@@ -16,4 +13,3 @@ spec:
       protocol: TCP
   selector:
     app: {{ template "frontend.fullname" . }}
-    release: {{ .Release.Name }}

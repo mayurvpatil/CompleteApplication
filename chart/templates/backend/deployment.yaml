@@ -5,20 +5,15 @@ metadata:
   name: {{ template "backend.fullname" . }}
   labels:
     app: {{ template "backend.fullname" . }}
-    chart: {{ template "chart.fullname" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.backend.replicaCount }}
   selector:
     matchLabels:
       app: {{ template "backend.fullname" . }}
-      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
         app: {{ template "backend.fullname" . }}
-        release: {{ .Release.Name }}
     spec:
       containers:
         - name: {{ template "backend.fullname" . }}
@@ -31,5 +26,3 @@ spec:
             - name: 'flask-port'
               containerPort: 5001
               protocol: TCP
-      imagePullSecrets:
-        - name: {{ .Values.common.imagePullSecret }}

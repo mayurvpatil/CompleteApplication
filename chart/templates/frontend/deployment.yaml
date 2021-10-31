@@ -5,29 +5,21 @@ metadata:
   name: {{ template "frontend.fullname" . }}
   labels:
     app: {{ template "frontend.fullname" . }}
-    chart: {{ template "chart.fullname" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.frontend.replicaCount }}
   selector:
     matchLabels:
       app: {{ template "frontend.fullname" . }}
-      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
         app: {{ template "frontend.fullname" . }}
-        release: {{ .Release.Name }}
     spec:
       containers:
-        - name: flask-frontend
+        - name: {{ template "frontend.fullname" . }}
           image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
           imagePullPolicy: {{ .Values.common.imagePullPolicy }}
-          name: {{ template "frontend.fullname" . }}
           ports:
             - name: 'react'
               containerPort: 3000
               protocol: TCP
-      imagePullSecrets:
-        - name: {{ .Values.common.imagePullSecret }}
